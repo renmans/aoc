@@ -12,8 +12,18 @@ def hydrothermal_venture():
             elif y1 == y2:
                 for i in range(min(x1, x2), max(x1, x2)+1):
                     grid[i][y1] += 1
+            elif (x1 < x2 and y1 < y2) or (x1 > x2 and y1 > y2):
+                x, y = min(x1, x2), min(y1, y2)
+                for i in range(max(x1, x2) - x + 1):
+                    grid[x][y] += 1
+                    x += 1
+                    y += 1
             else:
-                continue
+                x, y = min(x1, x2), max(y1, y2)
+                for i in range(max(x1, x2) - x + 1):
+                    grid[x][y] += 1
+                    x += 1
+                    y -= 1
 
     for i in range(1000):
         for j in range(1000):
